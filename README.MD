@@ -49,6 +49,6 @@ petición GET con `@PathVariable`.
 
 Repositorio: https://github.com/mendozavargasbraulio/BMVact2_t4
 
-Actividad 2 (puerto 8084): `hola` 
+Actividad 2 (puerto 8084): `http://13.140.209.186:8084/empleados/formulario` 
 
 Actividad 1 (puerto 8082): `http://13.140.209.186:8082/proyecto` 
