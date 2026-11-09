@@ -34,16 +34,57 @@ En `src/main/resources/application.properties` se configuró `server.port=8084` 
 
 ## 5. Capturas de evidencia
 
-vista `/detalles_info` con `th:each`.
-![Listado](src/img/act2-listado.png) 
-formulario después de enviar datos con `@ModelAttribute` y `@Value` visible.
-![Formulario](src/img/act2-formulario.png) 
-petición GET con `@RequestParam`.
-![RequestParam](src/img/act2-requestparam.png) 
-petición GET con `@PathVariable`.
-![PathVariable](src/img/act2-pathvariable.png) 
- POST en Postman y respuesta JSON correcta.
-![POST Postman](src/img/act2-post.png) 
+En esta sección se muestran las pruebas realizadas para comprobar el funcionamiento de las vistas, los controladores y los endpoints desarrollados en Spring Boot.
+
+### 5.1. Listado de empleados con `th:each`
+
+Se muestra la información de los empleados mediante una tabla generada dinámicamente con Thymeleaf, utilizando `Model` y la directiva `th:each`.
+
+**Endpoint:** [Ver listado de empleados](http://13.140.209.186:8084/detalles_info)
+
+![Listado de empleados](src/img/act2-listado.png)
+
+---
+
+### 5.2. Formulario con `@ModelAttribute` y `@Value`
+
+Formulario para capturar los datos de un empleado y enviarlos al controlador mediante `@ModelAttribute`. También se muestra una propiedad personalizada obtenida con `@Value`.
+
+**Endpoint:** [Ver formulario de empleados](http://13.140.209.186:8084/empleados/formulario)
+
+![Formulario de empleados](src/img/act2-formulario.png)
+
+---
+
+### 5.3. Petición GET con `@RequestParam`
+
+Se comprueba la recepción de un parámetro enviado mediante la URL y su respuesta en formato JSON.
+
+**Endpoint:** [Probar RequestParam](http://13.140.209.186:8084/api/parametros/detalle?informacion=hola)
+
+![Prueba RequestParam](src/img/act2-requestparam.png)
+
+---
+
+### 5.4. Petición GET con `@PathVariable`
+
+Se demuestra cómo recibir información directamente desde una variable incluida en la ruta del endpoint.
+
+**Endpoint:** [Probar PathVariable](http://13.140.209.186:8084/api/variable/pagina1/hola)
+
+![Prueba PathVariable](src/img/act2-pathvariable.png)
+
+---
+
+### 5.5. Petición POST con Postman
+
+Se realizó una petición POST enviando los datos de un empleado en formato JSON mediante Postman. El servidor procesó la solicitud y devolvió una respuesta `200 OK` con la información recibida.
+
+**Método:** `POST`
+
+**Endpoint:** `http://13.140.209.186:8084/api/variable/solicitud`
+
+![Prueba POST en Postman](src/img/act2-post.png)
 
 ## 6. Publicación
 
