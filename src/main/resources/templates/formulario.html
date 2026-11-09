@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de empleados</title>
+</head>
+<body>
+    <h1>Registro de empleados</h1>
+    <p>Proyecto de: <span th:text="${usuarioProyecto}">Usuario</span></p>
+
+    <form th:action="@{/empleados/registrar}" th:object="${empleado}" method="post">
+        <p><label>Nombre: <input type="text" th:field="*{nombre}" required></label></p>
+        <p><label>Apellido: <input type="text" th:field="*{apellido}" required></label></p>
+        <p><label>Dirección: <input type="text" th:field="*{direccion}" required></label></p>
+        <p><label>Puesto: <input type="text" th:field="*{puesto}" required></label></p>
+        <p><label>Edad: <input type="number" min="0" th:field="*{edad}" required></label></p>
+        <p><label>Teléfono: <input type="number" min="0" th:field="*{telefono}" required></label></p>
+        <p><label>ID: <input type="number" min="1" th:field="*{id}" required></label></p>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <section th:if="${guardado}">
+        <h2>Datos recibidos correctamente</h2>
+        <p>Nombre: <span th:text="${empleado.nombre}"></span></p>
+        <p>Apellido: <span th:text="${empleado.apellido}"></span></p>
+        <p>Puesto: <span th:text="${empleado.puesto}"></span></p>
+        <p>Edad: <span th:text="${empleado.edad}"></span></p>
+        <p>ID: <span th:text="${empleado.id}"></span></p>
+    </section>
+
+    <p><a th:href="@{/detalles_info}">Ver lista de empleados</a></p>
+</body>
+</html>

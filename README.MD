@@ -1,98 +1,54 @@
-# Actividad 1: Introducción a Spring Boot
+# Actividad 2: Spring Boot MVC y Thymeleaf
 
-## 1. Descripción del proyecto
+## 1. Descripción
 
-En este proyecto el objetivo es aprender a configurar un entorno de desarrollo con Java y Spring Boot, crear controladores que respondan a peticiones HTTP y comprobar el funcionamiento de una aplicación web.
+Aplicación basada en una copia independiente de la Actividad 1. Se utilizan Spring Boot, Thymeleaf, Model y DTO para mostrar una lista de empleados, recibir datos desde un formulario y responder peticiones HTTP.
 
-## 2. Tecnologías, estructura y controladores
+## 2. Tecnologías y funcionalidades
 
-### Tecnologías utilizadas
+Java 21, Spring Boot 4.1.2, Maven, Spring Web MVC, Thymeleaf y Postman.
 
-- **Java 21:** Lenguaje de programación utilizado.
-- **Spring Boot 4.1.2:** Framework para desarrollar la aplicación web.
-- **Maven:** Gestión de dependencias y compilación del proyecto.
-- **Spring Web:** Creación de controladores y endpoints HTTP.
-- **Thymeleaf:** Generación de páginas HTML dinámicas.
-- **Visual Studio Code:** Entorno de desarrollo.
+- `EjemploController`: vista `/detalles_info` con la lista de empleados (`Model` y `th:each`).
+- `FormularioController`: vista `/empleados/formulario` y recepción de datos por `@ModelAttribute` en `POST /empleados/registrar`.
+- `EmpleadoDTO`: objeto utilizado tanto en el formulario HTML como en el endpoint REST POST.
+- `RquestParamControllers`: endpoint GET con `@RequestParam`.
+- `PathVariableController`: endpoint GET con `@PathVariable`, POST con `@RequestBody` y propiedades con `@Value`.
+- `@Value` obtiene `config.usuario` desde `application.properties` y lo muestra en el formulario.
 
-### Estructura del proyecto
+## 3. Endpoints
 
-```text
-springboot-applications/
-├── src/
-│   ├──img
-│   └── main/
-│       ├── java/
-│       │   └── com/informaticonfig/spring/app1/
-│       │       └── springboot_applications/
-│       │           ├── controllers/
-│       │           │   ├── EjemploController.java
-│       │           │   └── EjemploRestController.java
-│       │           └── SpringbootApplicationsApplication.java
-│       └── resources/
-│           ├── templates/
-│           │   └── detalles_info.html
-│           └── application.properties
-├── pom.xml
-├── mvnw
-└── mvnw.cmd
-```
-
-### Controladores y endpoints
-
-Se implementaron dos controladores utilizando las anotaciones `@Controller` y `@RestController`.
-
-**EjemploController.java**
-
-Utiliza `@Controller` para manejar peticiones web y mostrar una página HTML mediante Thymeleaf.
-
-- `GET /detalles_info`: Muestra una página con información del proyecto English Lab.
-
-**EjemploRestController.java**
-
-Utiliza `@RestController` para devolver respuestas directamente al cliente en formato JSON o texto.
-
-- `GET /detalles_info2`: Devuelve un objeto JSON con información simulada de un estudiante, como su nombre y nivel de inglés.
-- `GET /proyecto`: Devuelve un texto que identifica el proyecto Spring Boot.
-
-| Método | Endpoint | Tipo de respuesta |
+| Método | Ruta | Función |
 |---|---|---|
-| GET | `/detalles_info` | HTML |
-| GET | `/detalles_info2` | JSON |
-| GET | `/proyecto` | Texto |
+| GET | `/detalles_info` | Tabla de empleados con Thymeleaf |
+| GET | `/empleados/formulario` | Formulario enlazado a EmpleadoDTO |
+| POST | `/empleados/registrar` | Recepción del formulario con ModelAttribute |
+| GET | `/api/parametros/detalle?informacion=hola` | RequestParam |
+| GET | `/api/variable/pagina1/hola` | PathVariable |
+| GET | `/api/variable/valores` | Propiedades mediante Value |
+| POST | `/api/variable/solicitud` | Petición JSON mediante RequestBody y EmpleadoDTO |
 
-## 3. Configuración del puerto 8082
+## 4. Configuración local
 
-Spring Boot utiliza el puerto `8080` de manera predeterminada. Para esta actividad se configuró el puerto `8082`, con el objetivo de evitar conflictos con las aplicaciones de otros integrantes del equipo.
+En `src/main/resources/application.properties` se configuró `server.port=8084` para no interferir con la Actividad 1 (8082).
 
-La configuración se realizó en el archivo `src/main/resources/application.properties`:
 
-```properties
-server.port=8082
-spring.application.name=springboot-applications
-```
+## 5. Capturas de evidencia
 
-Con esta configuración, los endpoints pueden consultarse localmente mediante:
+vista `/detalles_info` con `th:each`.
+![Listado](src/img/act2-listado.png) 
+formulario después de enviar datos con `@ModelAttribute` y `@Value` visible.
+![Formulario](src/img/act2-formulario.png) 
+petición GET con `@RequestParam`.
+![RequestParam](src/img/act2-requestparam.png) 
+petición GET con `@PathVariable`.
+![PathVariable](src/img/act2-pathvariable.png) 
+ POST en Postman y respuesta JSON correcta.
+![POST Postman](src/img/act2-post.png) 
 
-- `http://13.140.209.186:8082/detalles_info`
-- `http://13.140.209.186:8082/detalles_info2`
-- `http://13.140.209.186:8082/proyecto`
+## 6. Publicación
 
-## 4. Capturas
+Repositorio: https://github.com/mendozavargasbraulio/BMVact2_t4
 
-### Ejecución en el puerto 8082
+Actividad 2 (puerto 8084): `hola` 
 
-![Ejecución de Spring Boot](src/img/servidor.png)
-
-### Endpoint /detalles_info
-
-![Página HTML](src/img/detalles_info.png)
-
-### Endpoint /detalles_info2
-
-![Respuesta JSON](src/img/detalles_info2.png)
-
-### Endpoint /proyecto
-
-![Respuesta del proyecto](src/img/proyecto.png)
-
+Actividad 1 (puerto 8082): `http://13.140.209.186:8082/proyecto` 
